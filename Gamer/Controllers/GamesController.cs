@@ -205,6 +205,20 @@ namespace Gamer.Controllers
             return View(game);
         }
 
+        [HttpPost]
+        public ActionResult Search(FormCollection fc, string searchString)
+        {
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var games = db.Games.Include(c => c.Usuario).Where(c => c.Nome.Contains(searchString)).OrderBy(o => o.Nome);
+                return View("Index", games.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
         // POST: Games/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -225,4 +239,6 @@ namespace Gamer.Controllers
             base.Dispose(disposing);
         }
     }
+
+
 }
