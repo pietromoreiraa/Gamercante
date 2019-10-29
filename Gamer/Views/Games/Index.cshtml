@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Gamer.Models.Game>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plataforma)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoNegocio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Img)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plataforma)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Preco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoNegocio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+
+            @{
+                string img = item.Img;
+                if (img != string.Empty)
+                {
+                    if (img != null)
+                    {
+                        string file = img;
+                        string path = System.Configuration.ConfigurationManager.AppSettings["PathWeb"] + "/Files/Games/" + file;
+                        <img src='@Url.Content(path)' style="height:150px;" title="Foto" /><br />
+                        <a href="@path" target="_blank">Visualizar</a>
+                    }
+                }
+            }
+
+
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GameID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GameID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GameID })
+        </td>
+    </tr>
+}
+
+</table>
