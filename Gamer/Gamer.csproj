@@ -151,6 +151,10 @@
     <Compile Include="Migrations\201910290136017_GameUp.Designer.cs">
       <DependentUpon>201910290136017_GameUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911072234358_GameType.cs" />
+    <Compile Include="Migrations\201911072234358_GameType.Designer.cs">
+      <DependentUpon>201911072234358_GameType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Game.cs" />
@@ -295,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910290136017_GameUp.resx">
       <DependentUpon>201910290136017_GameUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911072234358_GameType.resx">
+      <DependentUpon>201911072234358_GameType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

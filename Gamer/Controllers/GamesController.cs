@@ -49,7 +49,7 @@ namespace Gamer.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GameID,Nome,Plataforma,Preco,TipoNegocio,Descricao,Img,ID")] Game game, HttpPostedFileBase img)
+        public ActionResult Create([Bind(Include = "GameID,Nome,Plataforma,Preco,TipoNegocio,Descricao,Categoria,Img,ID")] Game game, HttpPostedFileBase img)
         {
             ViewBag.FotoMensagem = "";
             try
