@@ -218,6 +218,18 @@ namespace Gamer.Controllers
                 return RedirectToAction("Index");
             }
         }
+        public ActionResult Filter(FormCollection fc, string filterString)
+        {
+            if (!String.IsNullOrEmpty(filterString))
+            {
+                var games = db.Games.Where(c => c.Categoria.Contains(filterString)).OrderBy(o => o.Nome);
+                return View("Index", games.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
 
         // POST: Games/Delete/5
         [HttpPost, ActionName("Delete")]

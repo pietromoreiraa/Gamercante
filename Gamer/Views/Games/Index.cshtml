@@ -9,7 +9,7 @@
 <div class="navbar-collapse collapse">
 
     <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Início", "Index", "Home")</li>       
+        <li>@Html.ActionLink("Início", "Index", "Home")</li>
 
     </ul>
 </div>
@@ -25,6 +25,29 @@
                 Pesquisar: <input type="text" name="SearchString" id="SearchString"
                                   class="form-control" />
                 <input type="submit" value="Pesquisar" class="btn btn-default" />
+                
+            </div>
+        </div>
+    </div>
+}
+@using (Html.BeginForm("Filter", "Games", null, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                
+                @Html.DropDownList("FilterString", new List<SelectListItem>
+                {
+                new SelectListItem {Text = "Mundo Aberto", Value = "Mundo Aberto"},
+                new SelectListItem {Text = "Ação", Value = "Acao"},
+                new SelectListItem {Text = "Survival Horror", Value = "Survival Horror"},
+                new SelectListItem {Text = "RPG", Value = "RPG"},
+                new SelectListItem {Text = "Indie", Value = "Indie"},
+                new SelectListItem {Text = "AAA", Value = "AAA"}
+                }, "", new { @class = "form-control" })
+                <input type="submit" value="Filtrar" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -80,6 +103,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
             </td>
             <td>
 
