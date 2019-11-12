@@ -16,7 +16,7 @@ namespace Gamer.Models
         [StringLength(100, MinimumLength = 2, ErrorMessage = "O nome da jogo deve ter entre 2 e 100 caracteres.")]
         public string Nome { get; set; }
         public string Plataforma { get; set; }
-        public double Preco { get; set; }
+        public decimal Preco { get; set; }
         public int TipoNegocio { get; set; }
         public string Descricao { get; set; }
         public string Categoria { get; set; }

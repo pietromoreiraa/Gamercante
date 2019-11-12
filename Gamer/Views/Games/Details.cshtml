@@ -1,74 +1,27 @@
 ﻿@model Gamer.Models.Game
-
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Game - " + Model.Nome;
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>Game</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Usuario.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Plataforma)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Plataforma)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Preco)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Preco)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoNegocio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoNegocio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Img)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Img)
-        </dd>
-
-    </dl>
-</div>
+<h2>@Model.Nome</h2>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GameID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @{ 
+        string fileName = Model.Img;
+        
+        string path = System.Configuration.ConfigurationManager.AppSettings["PathWeb"] + "\\Games\\" + fileName;
+    }
+    <img alt="@Model.Nome"
+         src="@path" />
 </p>
+<div id="album-details">
+    <p>
+        <em>Genre:</em>
+        @Model.Categoria
+    </p>
+    <p>
+        <em>Price:</em>
+        @String.Format("{0:F}",Model.Preco)
+    </p>
+    <p class="button">
+        @Html.ActionLink("Add tocart", "AddToCart","ShoppingCart", new { id = Model.GameID }, "")
+    </p>
+</div>

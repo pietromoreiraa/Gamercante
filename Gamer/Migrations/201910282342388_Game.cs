@@ -7,6 +7,9 @@ namespace Gamer.Migrations
     {
         public override void Up()
         {
+           
+            AddColumn("dbo.Game", "Nome", c => c.String(unicode: false));
+            AddColumn("dbo.Game", "ID", c => c.String(unicode: false));
             AddColumn("dbo.Game", "Plataforma", c => c.String(unicode: false));
             AddColumn("dbo.Game", "Preco", c => c.Double(nullable: false));
             AddColumn("dbo.Game", "TipoNegocio", c => c.Int(nullable: false));
@@ -16,6 +19,9 @@ namespace Gamer.Migrations
         
         public override void Down()
         {
+            
+            DropColumn("dbo.Game", "Nome");
+            DropColumn("dbo.Game", "ID");
             DropColumn("dbo.Game", "Img");
             DropColumn("dbo.Game", "Descricao");
             DropColumn("dbo.Game", "TipoNegocio");
