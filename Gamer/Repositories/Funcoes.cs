@@ -20,6 +20,7 @@ namespace Gamer.Repositories
             FormsAuthentication.SetAuthCookie(query.Email, false);
             //HttpContext.Current.Response.Cookies["Usuario"].Value = query.Email;
             //HttpContext.Current.Response.Cookies["Usuario"].Expires = DateTime.Now.AddDays(10);
+            HttpContext.Current.Session["ID"] = query.Id;
             HttpContext.Current.Session["Usuario"] = query.Email;
             return true;
         }

@@ -55,7 +55,7 @@ Model.CartItems)
     {
         <tr id="row-@item.RecordId">
             <td>
-                @item.Game.Nome
+                @Html.ActionLink(item.Game.Nome,"Details", "Games", new { id =item.GameId }, null)
             </td>
             <td>
                 @item.Game.Preco

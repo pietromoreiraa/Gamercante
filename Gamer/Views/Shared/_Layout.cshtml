@@ -37,11 +37,14 @@
 
                             @{
                                 Gamer.Models.Usuario usuario = Gamer.Repositories.Funcoes.GetUsuario();
-                                string getid = HttpContext.Current.Session.SessionID.ToString();
+
+
                                 if (usuario != null)
                                 {
+                                    string getid = HttpContext.Current.Session["ID"].ToString();
                                     <li>@Html.ActionLink("Games", "Index", "Games")</li>
-                                    <li>@Html.ActionLink("Minhas Informações", "Details", "Usuarios", new { id = getid })</li>
+                           
+                                    <li>@Html.ActionLink("Minhas Informações", "Details", "Usuarios", new { id = getid }, htmlAttributes: null)</li>
                                     <li>@Html.ActionLink("Sair", "Logoff", "Publico")</li>
                                     
 
