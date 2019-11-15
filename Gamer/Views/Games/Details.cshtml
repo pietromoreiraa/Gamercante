@@ -7,7 +7,7 @@
     @{ 
         string fileName = Model.Img;
         
-        string path = System.Configuration.ConfigurationManager.AppSettings["PathWeb"] + "\\Games\\" + fileName;
+        string path = System.Configuration.ConfigurationManager.AppSettings["PathWeb"] + "\\Files\\Games\\" + fileName;
     }
     <img alt="@Model.Nome"
          src="@path" />

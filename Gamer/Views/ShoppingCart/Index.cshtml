@@ -1,6 +1,7 @@
 ﻿@model Gamer.ViewModels.ShoppingCartViewModel
 @{
     ViewBag.Title = "Shopping Cart";
+    Gamer.Models.Context db = new Gamer.Models.Context();
 }
 <script src="/Scripts/jquery-1.4.4.min.js"
         type="text/javascript"></script>
@@ -50,15 +51,18 @@
         </th>
         <th></th>
     </tr>
-    @foreach (var item in
-Model.CartItems)
+    @foreach (var item in Model.CartItems)
     {
+        
+            Gamer.Models.Game game = db.Games.Find(item.GameId);
+        
+
         <tr id="row-@item.RecordId">
             <td>
-                @Html.ActionLink(item.Game.Nome,"Details", "Games", new { id =item.GameId }, null)
+                @Html.ActionLink(game.Nome,"Details", "Games", new { id =item.GameId }, null)
             </td>
             <td>
-                @item.Game.Preco
+                @game.Preco
             </td>
             <td id="item-count-@item.RecordId">
                 @item.Count
