@@ -83,5 +83,23 @@ namespace Gamer.Controllers
 
         //Work with Paypal Payment
         private Payment payment;
+
+        //Create a payment using an APIContext
+        private Payment CreatePayment(APIContext apiContext, string redirectUrl)
+        {
+            var listItems = new ItemList(){items = new List<Item>()};
+            List<Cart> listCarts = (List<Cart>)Session[strCart];
+            foreach (var cart in listCarts)
+            {
+                listItems.items.Add(new Item()
+                {
+                    name = cart.Game.Nome,
+                    currency = "BRL",
+                    price = cart.Game.Preco.ToString();
+
+                });
+                                    
+            }
+        }
     }
 }
