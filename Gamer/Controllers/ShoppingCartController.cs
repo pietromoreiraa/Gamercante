@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PayPal.Api;
 
 namespace Gamer.Controllers
 {
@@ -79,5 +80,8 @@ namespace Gamer.Controllers
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
         }
+
+        //Work with Paypal Payment
+        private Payment payment;
     }
 }
