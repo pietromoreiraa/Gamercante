@@ -13,7 +13,7 @@
             var recordToDelete = $(this).attr("data-id");
             if (recordToDelete != '') {
                 // Perform the ajax post
-                $.post("/ShoppingCart/RemoveFromCart", {"id": recordToDelete },
+                $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
                     function (data) {
                         // Successful requests get here
                         // Update the page elements
@@ -29,13 +29,20 @@
             }
         });
     });
+
+
+    src = "https://www.paypal.com/sdk/js?client-id=ARHhbVzNFw2GawSKU8QimH8SgkB-7qSf41rKpKZPfQadprMo_wHFcRlzkJk1wNQDLQ8d0gAh0aJMxaaM" > // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+
 </script>
 <h3>
     <em>Review</em> your cart:
 </h3>
-<p class="button">
-    @Html.ActionLink("Checkout>>", "AddressAndPayment", "Checkout")
-</p>
+<div id="paypal-button-container">
+
+</div>
+
+
+
 <div id="update-message">
 </div>
 <table>
@@ -53,13 +60,13 @@
     </tr>
     @foreach (var item in Model.CartItems)
     {
-        
-            Gamer.Models.Game game = db.Games.Find(item.GameId);
-        
+
+        Gamer.Models.Game game = db.Games.Find(item.GameId);
+
 
         <tr id="row-@item.RecordId">
             <td>
-                @Html.ActionLink(game.Nome,"Details", "Games", new { id =item.GameId }, null)
+                @Html.ActionLink(game.Nome, "Details", "Games", new { id = item.GameId }, null)
             </td>
             <td>
                 @game.Preco
@@ -87,3 +94,38 @@
         </td>
     </tr>
 </table>
+@{ 
+    decimal Valor = Model.CartTotal;
+}
+<script>
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        currency_code: "BRL",
+                        value: 'Valor'
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function (details) {
+                // This function shows a transaction success message to your buyer.
+                alert('Transaction completed by ' + details.payer.name.given_name);
+                return fetch('/paypal-transaction-complete', {
+                    method: 'post',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        orderID: data.orderID
+                    })
+                });
+            });
+        }
+    
+    }).render('#paypal-button-container');
+</script>
