@@ -286,6 +286,8 @@
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\Usuarios\DetailPersonal.cshtml" />
+    <Content Include="Views\ShoppingCart\Success.cshtml" />
+    <Content Include="Views\ShoppingCart\Failure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
