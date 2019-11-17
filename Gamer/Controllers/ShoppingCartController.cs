@@ -174,7 +174,7 @@ namespace Gamer.Controllers
                 {
                     //Creating a payment
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/ShoppingCart/PaymentwithPaypal?";
-                    var guid = Convert.ToString((new Random()).Next(100000));
+                    var guid = Convert.ToString((new Random()).Next(10000000));
                     var createdPayment = CreatePayment(apiContext, baseURI + "guid= " + guid);
 
                     //Get links returned from paypal response to create

@@ -14,8 +14,8 @@ namespace Gamer.Models
         static PaypalConfiguration()
         {
             var config = GetConfig();
-            ClientId = config["ClientId"];
-            ClientSecret = config["ClientSecret"];
+            ClientId = config["clientId"];
+            ClientSecret = config["clientSecret"];
 
         }
         public static Dictionary<string, string> GetConfig()

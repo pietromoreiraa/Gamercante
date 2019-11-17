@@ -93,8 +93,9 @@
             @Model.CartTotal
         </td>
     </tr>
+
 </table>
-@{ 
+@{
     decimal Valor = Model.CartTotal;
 }
 <script>
@@ -126,6 +127,7 @@
                 });
             });
         }
-    
+
     }).render('#paypal-button-container');
 </script>
+@Html.ActionLink("Checkout With PayPal", "PaymentWithPaypal", "ShoppingCart")
