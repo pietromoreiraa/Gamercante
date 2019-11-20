@@ -3,6 +3,9 @@
     ViewBag.Title = "Shopping Cart";
     Gamer.Models.Context db = new Gamer.Models.Context();
 }
+
+
+
 <script src="/Scripts/jquery-1.4.4.min.js"
         type="text/javascript"></script>
 <script type="text/javascript">
@@ -35,26 +38,50 @@
 
 </script>
 <h3>
-    <em>Review</em> your cart:
+    <em>Confira seu carrinho:</em>
 </h3>
 <div id="paypal-button-container">
 
 </div>
 
+<style>
 
+    tr{
+        padding: 10px;
+    }
+
+    th {
+        
+        padding: 15px;
+    }
+
+    .tdEspaco {
+        display: table;
+        float: left;
+        margin-right: 20px
+    }
+
+    
+
+    table {
+        border-spacing: 8px;
+    }
+
+</style>
 
 <div id="update-message">
 </div>
 <table>
     <tr>
-        <th>
-            Game Name
+        <th class='tdEspaco'>
+           Nome do jogo 
         </th>
-        <th>
-            Preco (each)
+        
+        <th class='tdEspaco'> 
+            Preço
         </th>
-        <th>
-            Quantity
+        <th class='tdEspaco'>
+            Quantidade
         </th>
         <th></th>
     </tr>
@@ -65,24 +92,24 @@
 
 
         <tr id="row-@item.RecordId">
-            <td>
+            <td class='tdEspaco'>
                 @Html.ActionLink(game.Nome, "Details", "Games", new { id = item.GameId }, null)
             </td>
-            <td>
+            <td class='tdEspaco'>
                 @game.Preco
             </td>
-            <td id="item-count-@item.RecordId">
-                @item.Count
+            <td id="item-count-@item.RecordId" class='tdEspaco'>
+                @item.Count 
             </td>
-            <td>
+            <td class='tdEspaco'>
                 <a href="#" class="RemoveLink"
                    data-id="@item.RecordId">
-                    Remove
-                    from cart
+                    
                 </a>
             </td>
         </tr>
     }
+    
     <tr>
         <td>
             Total
@@ -130,4 +157,4 @@
 
     }).render('#paypal-button-container');
 </script>
-@Html.ActionLink("Checkout With PayPal", "PaymentWithPaypal", "ShoppingCart")
+@Html.ActionLink("Ir para o Paypal", "PaymentWithPaypal", "ShoppingCart")

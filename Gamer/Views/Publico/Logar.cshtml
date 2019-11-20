@@ -1,38 +1,79 @@
 ﻿@model IEnumerable<Gamer.Models.Usuario>
 @{
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    
     ViewBag.Title = "Login";
 }
+
+
+
+
+<link href="~/cssLogin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/cssLogin/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/cssLogin/fonts/iconic/css/material-design-iconic-font.min.css" rel="stylesheet" />
+<link href="~/cssLogin/vendor/animate/animate.css" rel="stylesheet" />
+<link href="~/cssLogin/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" />
+<link href="~/cssLogin/vendor/animsition/css/animsition.min.css" rel="stylesheet" />
+<link href="~/cssLogin/vendor/select2/select2.min.css" rel="stylesheet" />
+<link href="~/cssLogin/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" />
+<link href="~/cssLogin/css/util.css" rel="stylesheet" />
+<link href="~/cssLogin/css/main.css" rel="stylesheet" />
+
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <hr />
-        <h3 class="text-center">@ViewBag.Error</h3>
+       
+       
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label class="control-label col-md-2">
-                Email
-            </label>
-            <div>
-                <div class="col-md-10 ">
-                    <input type="text" name="email" id="email" class="form-control" />
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">
-                Senha
-            </label>
-            <div class="col-md-10">
-                <input type="password" name="senha" id="senha" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Entrar" class="btn btn-default" />
+        
+        <div class="container-login100">
+            <div class="wrap-login100 p-t-85 p-b-20">
+                <form class="login100-form validate-form">
+
+                    <span class="login100-form-avatar">
+                        <img src="~/ImgHome/logo1.png" alt="AVATAR">
+
+                    </span>
+
+                    <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate="Enter username">
+                        <input class="input100" type="text" id="email" name="email">
+                        <span class="focus-input100" data-placeholder="E-mail"></span>
+                    </div>
+
+                    
+
+                    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+                        <input class="input100" type="password" id="senha" name="senha">
+                        <span class="focus-input100" data-placeholder="Senha"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+
+
+                        <input type="submit" value="Entrar" class="btn btn-default login100-form-btn" />
+
+                    </div>
+
+                    
+                </form>
             </div>
         </div>
     </div>
-}
+
+
+    <div id="dropDownSelect1"></div>
+
+    <script src="~/cssLogin/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/cssLogin/vendor/animsition/js/animsition.min.js"></script>
+    <script src="~/cssLogin/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/cssLogin/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <link href="~/cssLogin/vendor/select2/select2.min.css" rel="stylesheet" />
+    <script src="~/cssLogin/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/cssLogin/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="~/cssLogin/vendor/countdowntime/countdowntime.js"></script>
+    <script src="~/cssLogin/js/main.js"></script>
+
+                        }

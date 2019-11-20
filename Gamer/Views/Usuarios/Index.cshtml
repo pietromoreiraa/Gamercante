@@ -8,19 +8,14 @@
 
 <h2>Lista de membros</h2>
 
-<div class="navbar-collapse collapse">
-
-    <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Início", "Index", "Home")</li>
-        <li>@Html.ActionLink("Games", "Index", "Games")</li>
-    </ul>
-</div>
+<br />
 
 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar novo membro", "Create")
 </p>
+<br />
 <table class="table">
     <tr>
         <th>
@@ -87,10 +82,10 @@
             </td>
             <td>
                 @{string getid = HttpContext.Current.Session["Usuario"].ToString(); }
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Minhas Informações", "Details", new { id = getid })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Minhas Informações", "Details", new { id = getid }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
