@@ -73,5 +73,7 @@ namespace Gamer.Repositories
             FormsAuthentication.SignOut();
         }
     }
+
+
 }
 
