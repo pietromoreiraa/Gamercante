@@ -291,6 +291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Error\" />
     <Folder Include="Files\Games\" />
   </ItemGroup>
   <ItemGroup>
