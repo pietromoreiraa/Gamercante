@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
 }
 
+
+
 <h2>Lista de membros</h2>
 
 <div class="navbar-collapse collapse">
@@ -13,6 +15,8 @@
         <li>@Html.ActionLink("Games", "Index", "Games")</li>
     </ul>
 </div>
+
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -25,7 +29,7 @@
         <th>
             E-mail
         </th>
-        
+
         <th>
             CPF
         </th>
@@ -59,7 +63,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            
+
             <td>
                 @Html.DisplayFor(modelItem => item.Cpf)
             </td>
@@ -90,5 +94,7 @@
             </td>
         </tr>
     }
+
+
 
 </table>
