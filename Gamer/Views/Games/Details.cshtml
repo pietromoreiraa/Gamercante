@@ -19,9 +19,29 @@
     </p>
     <p>
         <em>Preço:</em>
-        @String.Format("{0:F}",Model.Preco)
+        @String.Format("{0:F}", Model.Preco)
     </p>
     <p class="button">
-        @Html.ActionLink("Adicionar ao carrinho", "AddToCart","ShoppingCart", new { id = Model.GameID }, "")
+        @Html.ActionLink("Adicionar ao carrinho", "AddToCart", "ShoppingCart", new { id = Model.GameID }, "")
+
+
     </p>
-</div>
+
+    <p>Classifique o jogo</p>
+    @using (Html.BeginForm("Create", "Rates", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+
+    @Html.AntiForgeryToken()
+
+
+        string GetId = HttpContext.Current.Session["ID"].ToString();
+        string GameId = Model.GameID.ToString();
+        
+            
+
+         
+
+
+            }
+    </div>

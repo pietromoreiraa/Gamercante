@@ -21,5 +21,6 @@ namespace Gamer.Models
         public string Estado { get; set; }
 
         public virtual ICollection<Game> Games { get; set; }
+        public virtual ICollection<Rate> Rates { get; set; }
     }
 }
