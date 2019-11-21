@@ -167,6 +167,7 @@
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\PaypalLogger.cs" />
+    <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -398,6 +399,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Error\" />
     <Folder Include="Files\Games\" />
+    <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

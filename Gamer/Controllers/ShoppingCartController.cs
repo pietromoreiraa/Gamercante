@@ -166,8 +166,8 @@ namespace Gamer.Controllers
             {
                 payer_id = payerId
             };
-            payment = new Payment() { id = paymentId };
-            return payment.Execute(apiContext, paymentExecution);
+           this.payment = new Payment() { id = paymentId };
+            return this.payment.Execute(apiContext, paymentExecution);
         }
         // Create PaymentWithPaypal method
         public ActionResult PaymentWithPaypal()
