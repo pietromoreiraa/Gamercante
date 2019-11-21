@@ -24,5 +24,7 @@ namespace Gamer.Models
 
         public int ID { get; set; }
         public virtual Usuario Usuario { get; set; }
+
+        public virtual ICollection<Rate> Rates { get; set; }
     }
 }
