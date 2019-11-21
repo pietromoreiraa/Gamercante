@@ -90,13 +90,19 @@ namespace Gamer.Controllers
             var cartv = ShoppingCart.GetCart(this.HttpContext);
             var listItems = new ItemList(){items = new List<Item>()};
             List<Cart> listCarts = cartv.GetCartItems();
+            
             foreach (var cart in listCarts)
             {
+                Context bd = new Context();
+                var game = bd.Games.Find(cart.GameId);
+                cart.Game = game;
+                double preco = Convert.ToDouble(cart.Game.Preco);
                 listItems.items.Add(new Item()
                 {
+                     
                     name = cart.Game.Nome,
                     currency = "BRL",
-                    price = cart.Game.Preco.ToString(),
+                    price = preco.ToString(),
                     quantity = cart.Count.ToString(),
                     sku = "sku"
 
@@ -112,13 +118,15 @@ namespace Gamer.Controllers
                 cancel_url = redirectUrl,
                 return_url = redirectUrl
             };
+           
+            double stotal = Convert.ToDouble(cartv.GetTotal());
 
             //Create details object
             var details = new Details()
             {
                 tax = "1",
                 shipping = "2",
-                subtotal = cartv.GetTotal().ToString()
+                subtotal = stotal.ToString()
             };
 
             //Create amount object
@@ -133,7 +141,7 @@ namespace Gamer.Controllers
             var transactionList = new List<Transaction>();
             transactionList.Add(new Transaction()
             {
-                description = "Testing transaction description",
+                description = "Testing transaction",
                 invoice_number = Convert.ToString((new Random()).Next(100000)),
                 amount = amount,
                 item_list = listItems
@@ -174,8 +182,8 @@ namespace Gamer.Controllers
                 {
                     //Creating a payment
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/ShoppingCart/PaymentwithPaypal?";
-                    var guid = Convert.ToString((new Random()).Next(10000000));
-                    var createdPayment = CreatePayment(apiContext, baseURI + "guid= " + guid);
+                    var guid = Convert.ToString((new Random()).Next(100000));
+                    var createdPayment = CreatePayment(apiContext, baseURI + "guid=" + guid);
 
                     //Get links returned from paypal response to create
                     var links = createdPayment.links.GetEnumerator();

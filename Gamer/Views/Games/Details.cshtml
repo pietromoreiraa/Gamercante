@@ -14,14 +14,14 @@
 </p>
 <div id="album-details">
     <p>
-        <em>Genre:</em>
+        <em>Gênero:</em>
         @Model.Categoria
     </p>
     <p>
-        <em>Price:</em>
+        <em>Preço:</em>
         @String.Format("{0:F}",Model.Preco)
     </p>
     <p class="button">
-        @Html.ActionLink("Add tocart", "AddToCart","ShoppingCart", new { id = Model.GameID }, "")
+        @Html.ActionLink("Adicionar ao carrinho", "AddToCart","ShoppingCart", new { id = Model.GameID }, "")
     </p>
 </div>

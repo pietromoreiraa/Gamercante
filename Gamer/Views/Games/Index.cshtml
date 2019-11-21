@@ -9,7 +9,7 @@
 <div class="navbar-collapse collapse">
 
     <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Início", "Index", "Home")</li>
+        
 
     </ul>
 </div>
@@ -29,12 +29,19 @@
             </div>
         </div>
     </div>
+
+    <br />
+
 }
 @using (Html.BeginForm("Filter", "Games", null, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+    
+    
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        Pesquisar por Gênero:
         <div class="form-group">
             <div class="col-md-10">
                 
@@ -53,32 +60,33 @@
     </div>
 }
 
+<br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novo jogo", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Usuario.Nome)
+           Nome
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nome)
+           Jogo
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Plataforma)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Preco)
+            Preço
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TipoNegocio)
+            Tipo de negocio
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descricao)
+            Descrição
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Img)
+            Gênero
         </th>
         <th></th>
     </tr>
@@ -126,9 +134,9 @@
 
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.GameID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.GameID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.GameID })
+                @Html.ActionLink("Editar", "Edit", new { id = item.GameID }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.GameID }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.GameID })
             </td>
         </tr>
     }
