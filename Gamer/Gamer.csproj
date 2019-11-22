@@ -138,6 +138,7 @@
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PublicoController.cs" />
+    <Compile Include="Controllers\RatesController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -159,6 +160,10 @@
     <Compile Include="Migrations\201911072234358_GameType.Designer.cs">
       <DependentUpon>201911072234358_GameType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911212223451_Rate.cs" />
+    <Compile Include="Migrations\201911212223451_Rate.Designer.cs">
+      <DependentUpon>201911212223451_Rate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Context.cs" />
@@ -167,7 +172,7 @@
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\PaypalLogger.cs" />
-    <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\Rate.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -394,12 +399,12 @@
     <Content Include="Views\Usuarios\DetailPersonal.cshtml" />
     <Content Include="Views\ShoppingCart\Success.cshtml" />
     <Content Include="Views\ShoppingCart\Failure.cshtml" />
+    <Content Include="Views\Rates\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Error\" />
     <Folder Include="Files\Games\" />
-    <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -426,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911072234358_GameType.resx">
       <DependentUpon>201911072234358_GameType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911212223451_Rate.resx">
+      <DependentUpon>201911212223451_Rate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

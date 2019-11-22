@@ -203,8 +203,9 @@ namespace Gamer.Controllers
                 else
                 {
                     //This one will be executed when  we have  received all the payment params from previous call
-                    var guid = Request.Params["guid"];
-                    var executedPayment = ExecutePayment(apiContext, payerId, Session["guid"] as string);
+                    string guid = Request.Params["guid"];
+                    string paymentID = Request.Params["paymentId"];
+                    var executedPayment = ExecutePayment(apiContext, payerId, paymentID);
                     if(executedPayment.state.ToLower() != "approved")
                     {
                         return View("Failure");
