@@ -37,11 +37,13 @@ namespace Gamer.Controllers
         }
 
         // GET: Rates/Create
+       
         public ActionResult Create()
         {
-            ViewBag.GameId = new SelectList(db.Games, "GameID", "Nome");
+            ViewBag.GameId = new SelectList(db.Games, "GameId", "Nome");
             return View();
         }
+        
 
         // POST: Rates/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 

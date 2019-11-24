@@ -36,19 +36,16 @@
 
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
 
-            Pesquisar por Gênero:
             <div class="form-group">
                 <div class="col-md-10">
-                   @{ string GetId = HttpContext.Current.Session["ID"].ToString();
-                       string GameId = Model.GameID.ToString();
-                   }
-
-                   @foreach (var Rate in Gamer.Models.Rate.)
-                   {
-                       <input type="radio" asp-for="Rate"
-                   }
-                    <input type="submit" value="Filtrar" class="btn btn-default" />
+                    @{ string UserId = HttpContext.Current.Session["ID"].ToString();
+                        string GameId = Model.GameID.ToString();
+                    }
+                    
+                    
+                    <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
         </div>
