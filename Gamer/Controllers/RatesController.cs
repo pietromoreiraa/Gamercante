@@ -15,9 +15,17 @@ namespace Gamer.Controllers
         private Context db = new Context();
 
         // GET: Rates
-        public ActionResult Index()
+        public ActionResult Index(string GameId)
         {
-            var rates = db.Rates.Include(r => r.Game);
+            int gameid = Convert.ToInt32(GameId);
+                var rates = db.Rates.Where(c => c.GameId == gameid).Select(gp => new { Rates = gp.Rating });
+            int resultcount = rates.Count();
+            
+            int resultTotal = rates.Sum(c => c.Rates);
+
+            decimal medium = resultTotal / resultcount;
+            
+           
             return View(rates.ToList());
         }
 
@@ -38,11 +46,7 @@ namespace Gamer.Controllers
 
         // GET: Rates/Create
        
-        public ActionResult Create()
-        {
-            ViewBag.GameId = new SelectList(db.Games, "GameId", "Nome");
-            return View();
-        }
+       
         
 
         // POST: Rates/Create
@@ -50,17 +54,31 @@ namespace Gamer.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RateId,Rating,UserId,GameId")] Rate rate)
+        public ActionResult Create([Bind(Include = "RateId,Rating,UserId,GameId")] Rate rate, string UserId, string GameId,  string Rating)
         {
-            if (ModelState.IsValid)
+            
+            Context bd = new Context();
+            int UId = Convert.ToInt32(UserId);
+            int GId = Convert.ToInt32(GameId);
+            var rates = db.Rates.Where(c => c.UserId == UId).Where(c => c.GameId == GId);
+            try
             {
-                db.Rates.Add(rate);
-                db.SaveChanges();
-                
+                var resultrates = rates.Single();
+            }
+            catch(Exception e)
+            { 
+                if (ModelState.IsValid)
+                {
+                    db.Rates.Add(rate);
+                    db.SaveChanges();
+
+                }
+
+                ViewBag.GameId = new SelectList(db.Games, "GameID", "Nome", rate.GameId);
             }
 
-            ViewBag.GameId = new SelectList(db.Games, "GameID", "Nome", rate.GameId);
-            return View(rate);
+                return Redirect(Request.UrlReferrer.ToString());
+           
         }
 
         // GET: Rates/Edit/5
@@ -121,6 +139,8 @@ namespace Gamer.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

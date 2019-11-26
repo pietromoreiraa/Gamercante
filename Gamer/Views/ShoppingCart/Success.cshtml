@@ -5,3 +5,29 @@
 
 <h2>Success</h2>
 
+@{
+    string Tday = DateTime.Today.ToString("yyyy-MM-dd");
+    string TCount = "1";
+}
+
+
+@using (Html.BeginForm("Create", "Transacaos", new { Tday, TCount }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div class="col-md-10">
+
+
+           
+
+
+
+            <input type="submit" value="Confirmar" class="btn btn-primary" />
+
+        </div>
+    </div>
+
+    <br />
+
+}

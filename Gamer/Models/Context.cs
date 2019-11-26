@@ -16,6 +16,7 @@ namespace Gamer.Models
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Rate> Rates { get; set; }
+        public DbSet<Transacao> Transacoes { get; set; }
         public DbSet<Cart>
 Carts
         { get; set; }

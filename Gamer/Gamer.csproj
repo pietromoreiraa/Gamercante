@@ -140,6 +140,7 @@
     <Compile Include="Controllers\PublicoController.cs" />
     <Compile Include="Controllers\RatesController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\TransacaosController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -167,13 +168,16 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Context.cs" />
+    <Compile Include="Models\DataChart.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\HtmlHelpers.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\PaypalLogger.cs" />
     <Compile Include="Models\Rate.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
+    <Compile Include="Models\Transacao.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Funcoes.cs" />
@@ -400,9 +404,12 @@
     <Content Include="Views\ShoppingCart\Success.cshtml" />
     <Content Include="Views\ShoppingCart\Failure.cshtml" />
     <Content Include="Views\Rates\Create.cshtml" />
+    <Content Include="Views\Transacaos\Create.cshtml" />
+    <Content Include="Views\Transacaos\Graficos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
     <Folder Include="Error\" />
     <Folder Include="Files\Games\" />
   </ItemGroup>
