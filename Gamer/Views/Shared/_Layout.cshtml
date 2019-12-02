@@ -3,7 +3,8 @@
 <head>
 
 
-   
+
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
@@ -35,6 +36,8 @@
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
 
 
+
+
                     @{
                         Gamer.Models.Usuario usuario = Gamer.Repositories.Funcoes.GetUsuario();
 
@@ -54,60 +57,72 @@
                         {
 
                             <li>@Html.ActionLink("Logar", "Logar", "Publico")</li>
-                            <li>@Html.ActionLink("Cadastrar-se", "Create", "Usuarios")</li>
+                            <li style="margin-right: 210px;">@Html.ActionLink("Cadastrar-se", "Create", "Usuarios")</li>
 
                         }
                     }
+
+
+                            <li>
+                                @{
+
+                                    if (usuario != null)
+                                    {
+                                        string ID = HttpContext.Current.Session["ID"].ToString();
+                                        using (Html.BeginForm("Search", "Games", new { ID }, FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <div class="form-horizontal">
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                <div class="form-group">
+                                                    <div class="col-md-10 row">
+                                                        @*@Html.TextBox("SearchString")*@
+                                                        <input type="text" name="SearchString" id="SearchString"
+                                                               class="form-control" />
+                                                        <input type="submit" value="Pesquisar" class="btn btn-default" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        string ID = "0";
+                                        using (Html.BeginForm("Search", "Games", new { ID }, FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <div class="form-horizontal">
+                                                
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                <div >
+                                                    
+                                                    <div class="row">
+                                                        @*@Html.TextBox("SearchString")*@
+
+                                                        <input type="text" name="SearchString" id="SearchString" class="form-control col-6" style="margin-top: 5px; margin-left: -10px;" />
+                                                        <div style="float: left; margin-left: 290px; margin-top: -34px; ">
+                                                            <input type="submit" value="Pesquisar" class="btn btn-default col-6"  />
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+
+                                    }
+                                }
+                            </li>
+
                 </ul>
+
             </div>
 
         </div>
 
     </div>
-    @{
-
-        if (usuario != null)
-        {
-            string ID = HttpContext.Current.Session["ID"].ToString();
-            using (Html.BeginForm("Search", "Games", new { ID }, FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @*@Html.TextBox("SearchString")*@
-                            Pesquisar: <input type="text" name="SearchString" id="SearchString"
-                                              class="form-control" />
-                            <input type="submit" value="Pesquisar" class="btn btn-default" />
-
-                        </div>
-                    </div>
-                </div>
-                    }
-                }
-                else
-                {
-                    string ID = "0";
-                    using (Html.BeginForm("Search", "Games", new { ID }, FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @*@Html.TextBox("SearchString")*@
-                            Pesquisar: <input type="text" name="SearchString" id="SearchString"
-                                              class="form-control" />
-                            <input type="submit" value="Pesquisar" class="btn btn-default" />
-
-                        </div>
-                    </div>
-                </div>
-            }
-
-        }
-    }
+   
     <div class="container body-content">
         @RenderBody()
         <hr />

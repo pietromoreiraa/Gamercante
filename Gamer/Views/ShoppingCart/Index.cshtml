@@ -4,7 +4,7 @@
     Gamer.Models.Context db = new Gamer.Models.Context();
 }
 
-
+<link href="~/css/font-awesome.css" rel="stylesheet" />
 
 <script src="/Scripts/jquery-1.4.4.min.js"
         type="text/javascript"></script>
@@ -40,28 +40,33 @@
 <h3>
     <em>Confira seu carrinho:</em>
 </h3>
-<div id="paypal-button-container">
+
 
 </div>
 
 <style>
 
-    tr{
-        padding: 10px;
-    }
-
-    th {
-        
-        padding: 15px;
-    }
+    
 
     .tdEspaco {
-        display: table;
-        float: left;
-        margin-right: 20px
+       
+        
+        
     }
 
-    
+    .thEspaco {
+        
+       
+        
+        padding: 20px;
+    }
+
+    .thtotal {
+       
+        
+        
+        padding: 10px;
+    }
 
     table {
         border-spacing: 8px;
@@ -72,19 +77,7 @@
 <div id="update-message">
 </div>
 <table>
-    <tr>
-        <th class='tdEspaco'>
-           Nome do jogo 
-        </th>
-        
-        <th class='tdEspaco'> 
-            Preço
-        </th>
-        <th class='tdEspaco'>
-            Quantidade
-        </th>
-        <th></th>
-    </tr>
+   
     @foreach (var item in Model.CartItems)
     {
 
@@ -92,69 +85,38 @@
 
 
         <tr id="row-@item.RecordId">
-            <td class='tdEspaco'>
-                @Html.ActionLink(game.Nome, "Details", "Games", new { id = item.GameId }, null)
-            </td>
-            <td class='tdEspaco'>
-                @game.Preco
-            </td>
-            <td id="item-count-@item.RecordId" class='tdEspaco'>
-                @item.Count 
-            </td>
-            <td class='tdEspaco'>
+            <th class='thEspaco'>
+              Nome do Jogo:  @Html.ActionLink(game.Nome, "Details", "Games", new { id = item.GameId }, null)
+            </th>
+            <th class='thEspaco'>
+              Preço:  R$ @game.Preco
+            </th>
+            <th id="item-count-@item.RecordId" class='thEspaco'>
+              Quantidade:  @item.Count 
+            </th>
+            <th class='thEspaco'>
                 <a href="#" class="RemoveLink"
                    data-id="@item.RecordId">
                     
                 </a>
-            </td>
+            </th>
         </tr>
     }
     
-    <tr>
-        <td>
-            Total
-        </td>
-        <td></td>
-        <td></td>
-        <td id="cart-total">
-            @Model.CartTotal
-        </td>
+    <tr class='thtotal'>
+        
+        
+        <th id="cart-total">
+         Total: R$  @Model.CartTotal
+        </th>
     </tr>
 
 </table>
 @{
     decimal Valor = Model.CartTotal;
 }
-<script>
-    paypal.Buttons({
-        createOrder: function (data, actions) {
-            // This function sets up the details of the transaction, including the amount and line item details.
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        currency_code: "BRL",
-                        value: 'Valor'
-                    }
-                }]
-            });
-        },
-        onApprove: function (data, actions) {
-            // This function captures the funds from the transaction.
-            return actions.order.capture().then(function (details) {
-                // This function shows a transaction success message to your buyer.
-                alert('Transaction completed by ' + details.payer.name.given_name);
-                return fetch('/paypal-transaction-complete', {
-                    method: 'post',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        orderID: data.orderID
-                    })
-                });
-            });
-        }
 
-    }).render('#paypal-button-container');
-</script>
+
+<i class="fa fa-paypal"></i>
+
 @Html.ActionLink("Ir para o Paypal", "PaymentWithPaypal", "ShoppingCart")

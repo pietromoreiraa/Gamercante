@@ -46,13 +46,16 @@ namespace Gamer.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Email,Senha,Cpf,Celular,DataNascimento,Cep,Endereco,Cidade,Estado")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "Id,Nome,Email,Senha,Cpf,Celular,DataNascimento,Cep,Endereco,Cidade,Estado")] Usuario usuario, string PasswordConfirm, string Senha)
         {
-            if (ModelState.IsValid)
+            if (Senha == PasswordConfirm)
             {
-                db.Usuarios.Add(usuario);
-                db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                if (ModelState.IsValid)
+                {
+                    db.Usuarios.Add(usuario);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
             }
 
             return View(usuario);

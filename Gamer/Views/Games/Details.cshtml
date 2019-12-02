@@ -13,6 +13,13 @@
          src="@path" />
 </p>
 <div id="album-details">
+    @{
+        Gamer.Models.Usuario usuario = Gamer.Repositories.Funcoes.GetUsuario();
+
+        string GameId = Model.GameID.ToString();
+
+        decimal Rating = Gamer.Models.DataChart.SelecionaClassificacao(GameId);
+    }
     <p>
         <em>Gênero:</em>
         @Model.Categoria
@@ -22,17 +29,17 @@
         @String.Format("{0:F}", Model.Preco)
     </p>
     <p class="button">
+        @{ 
+            if (usuario!= null) {
         @Html.ActionLink("Adicionar ao carrinho", "AddToCart", "ShoppingCart", new { id = Model.GameID }, "")
-
-
+            }
+            else
+            {
+                <label>Você precisa estar logado para adicionar ao carrinho,@Html.ActionLink("Entrar","Logar","Publico")</label>
+            }
+            }
     </p>
-    @{ 
-        Gamer.Models.Usuario usuario = Gamer.Repositories.Funcoes.GetUsuario();
 
-        string GameId = Model.GameID.ToString();
-
-        decimal Rating = Gamer.Models.DataChart.SelecionaClassificacao(GameId);
-    }
     <label>Nota:</label>
     @Rating
     <p>Classifique o jogo</p>
@@ -42,36 +49,36 @@
 
 
     @{ if (usuario != null)
-       {
-           string UserId = HttpContext.Current.Session["ID"].ToString();
+        {
+            string UserId = HttpContext.Current.Session["ID"].ToString();
 
-                using (Html.BeginForm("Create", "Rates", new { UserId, GameId }, FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
+            using (Html.BeginForm("Create", "Rates", new { UserId, GameId }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
 
-                    <div class="form-group">
-                            <div class="col-md-10">
-
-
-                                @Html.RadioButton("Rating", "1")
-                                @Html.RadioButton("Rating", "2")
-                                @Html.RadioButton("Rating", "3")
-                                @Html.RadioButton("Rating", "4")
-                                @Html.RadioButton("Rating", "5")
+                <div class="form-group">
+                    <div class="col-md-10">
 
 
+                        @Html.RadioButton("Rating", "1")
+                        @Html.RadioButton("Rating", "2")
+                        @Html.RadioButton("Rating", "3")
+                        @Html.RadioButton("Rating", "4")
+                        @Html.RadioButton("Rating", "5")
 
 
-                <input type="submit" value="Classificar" class="btn btn-primary" />
 
-                            </div>
+
+                        <input type="submit" value="Classificar" class="btn btn-primary" />
+
                     </div>
+                </div>
 
-        <br />
+                <br />
 
-                }
-       }
-     }
+            }
+        }
+    }
 
 
 
