@@ -8,7 +8,7 @@ namespace Gamer.Models
 {
     public class PaypalLogger
     {
-        public static string logDirectoryPath = "C:\\Users\\Pietro\\source\\repos\\pietromoreiraa\\Gamercante\\Gamer\\Error";
+        public static string logDirectoryPath = "C:\\Users\\kauea\\source\\repos\\pietromoreiraa\\Gamercante\\Gamer\\Error";
 
         public static string LogDirectoryPath { get => logDirectoryPath; set => logDirectoryPath = value; }
 
