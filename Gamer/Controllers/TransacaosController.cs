@@ -41,10 +41,10 @@ namespace Gamer.Controllers
         // POST: Transacaos/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult Create([Bind(Include = "TId,TCount,Tday")] Transacao transacao, string Tday, string TCount)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Transacoes.Add(transacao);

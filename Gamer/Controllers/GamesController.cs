@@ -49,7 +49,7 @@ namespace Gamer.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GameID,Nome,Plataforma,Preco,TipoNegocio,Descricao,Categoria,Img,ID")] Game game, HttpPostedFileBase img)
+        public ActionResult Create([Bind(Include = "GameID,Nome,Plataforma,Preco,TipoNegocio,Descricao,Categoria,Img,ID")] Game game, HttpPostedFileBase img, string ID)
         {
             ViewBag.FotoMensagem = "";
             try
@@ -71,7 +71,7 @@ namespace Gamer.Controllers
                     }
                     db.Games.Add(game);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("MyGames",new { ID});
                 }
             }
             catch (Exception ex)
@@ -206,16 +206,17 @@ namespace Gamer.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(FormCollection fc, string searchString)
+        public ActionResult Search(FormCollection fc, string searchString, string ID)
         {
             if (!String.IsNullOrEmpty(searchString))
             {
-                var games = db.Games.Include(c => c.Usuario).Where(c => c.Nome.Contains(searchString)).OrderBy(o => o.Nome);
-                return View("Index", games.ToList());
+                int id = Convert.ToInt32(ID);
+                var games = db.Games.Include(c => c.Usuario).Where(c => c.Nome.Contains(searchString)).Where(c => c.Usuario.Id != id).OrderBy(o => o.Nome);
+                return View("IndexAll", games.ToList());
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAll");
             }
         }
         public ActionResult Filter(FormCollection fc, string filterString)
@@ -230,7 +231,13 @@ namespace Gamer.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        public ActionResult MyGames(FormCollection fc, string ID)
+        {
+            int id = Convert.ToInt32(ID);
+                var games = db.Games.Where(c => c.ID == id).OrderBy(o => o.Nome);
+                return View("Index", games.ToList());
+            
+        }
         // POST: Games/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -51,12 +51,31 @@ namespace Gamer.Models
             int gameid = Convert.ToInt32(GameId);
             var rates = db.Rates.Where(c => c.GameId == gameid).Select(gp => new { Rates = gp.Rating });
             int resultcount = rates.Count();
+            int resultif = 1;
+            try
+            {
+                var resultRates = rates.Sum(c => c.Rates);
+            }
+            catch (Exception ex)
+            {
+               resultif = 2;
+            }
+            if(resultif == 1){
 
-            int resultTotal = rates.Sum(c => c.Rates);
+                int resultTotal = rates.Sum(c => c.Rates);
 
-            decimal medium = Convert.ToDecimal(resultTotal) / Convert.ToDecimal(resultcount);
+                decimal medium = Convert.ToDecimal(resultTotal) / Convert.ToDecimal(resultcount);
+                return medium;
+            }
+            else
+            {
+                decimal medium = Convert.ToDecimal(0.00);
+                return medium;
+            }
+                
+            
 
-            return medium;
+            
         }
 
     }

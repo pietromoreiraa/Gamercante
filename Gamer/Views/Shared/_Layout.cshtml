@@ -26,43 +26,88 @@
 
             </div>
 
-           
-                    <div class="navbar-collapse collapse">
 
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+            <div class="navbar-collapse collapse">
 
-
-                            @{
-                                Gamer.Models.Usuario usuario = Gamer.Repositories.Funcoes.GetUsuario();
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
 
 
-                                if (usuario != null)
-                                {
-                                    string getid = HttpContext.Current.Session["ID"].ToString();
-                                    <li>@Html.ActionLink("Games", "Index", "Games")</li>
-
-                                    <li>@Html.ActionLink("Minhas Informações", "Details", "Usuarios", new { id = getid }, htmlAttributes: null)</li>
-                                    <li>@Html.ActionLink("Sair", "Logoff", "Publico")</li>
+                    @{
+                        Gamer.Models.Usuario usuario = Gamer.Repositories.Funcoes.GetUsuario();
 
 
+                        if (usuario != null)
+                        {
+                            string getid = HttpContext.Current.Session["ID"].ToString();
+                            <li>@Html.ActionLink("Games", "MyGames", "Games", new { ID = getid }, htmlAttributes: null)</li>
 
-                                }
-                                else
-                                {
-                                    <li>@Html.ActionLink("Logar", "Logar", "Publico")</li>
-                                    <li>@Html.ActionLink("Cadastrar-se", "Create", "Usuarios")</li>
+                            <li>@Html.ActionLink("Minhas Informações", "Details", "Usuarios", new { id = getid }, htmlAttributes: null)</li>
+                            <li>@Html.ActionLink("Sair", "Logoff", "Publico")</li>
 
-                                }
-                            }
-                        </ul>
-                    </div>
-              
+
+
+                        }
+                        else
+                        {
+
+                            <li>@Html.ActionLink("Logar", "Logar", "Publico")</li>
+                            <li>@Html.ActionLink("Cadastrar-se", "Create", "Usuarios")</li>
+
+                        }
+                    }
+                </ul>
+            </div>
+
         </div>
-                
+
     </div>
+    @{
+
+        if (usuario != null)
+        {
+            string ID = HttpContext.Current.Session["ID"].ToString();
+            using (Html.BeginForm("Search", "Games", new { ID }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @*@Html.TextBox("SearchString")*@
+                            Pesquisar: <input type="text" name="SearchString" id="SearchString"
+                                              class="form-control" />
+                            <input type="submit" value="Pesquisar" class="btn btn-default" />
+
+                        </div>
+                    </div>
+                </div>
+                    }
+                }
+                else
+                {
+                    string ID = "0";
+                    using (Html.BeginForm("Search", "Games", new { ID }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @*@Html.TextBox("SearchString")*@
+                            Pesquisar: <input type="text" name="SearchString" id="SearchString"
+                                              class="form-control" />
+                            <input type="submit" value="Pesquisar" class="btn btn-default" />
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+    }
     <div class="container body-content">
         @RenderBody()
         <hr />

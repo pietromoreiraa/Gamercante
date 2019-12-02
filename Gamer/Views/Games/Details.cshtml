@@ -6,7 +6,7 @@
 <p>
     @{ 
         string fileName = Model.Img;
-        
+
         string path = System.Configuration.ConfigurationManager.AppSettings["PathWeb"] + "\\Files\\Games\\" + fileName;
     }
     <img alt="@Model.Nome"
@@ -26,10 +26,12 @@
 
 
     </p>
-    @{ string UserId = HttpContext.Current.Session["ID"].ToString();
+    @{ 
+        Gamer.Models.Usuario usuario = Gamer.Repositories.Funcoes.GetUsuario();
+
         string GameId = Model.GameID.ToString();
-        
-       decimal Rating = Gamer.Models.DataChart.SelecionaClassificacao(GameId);
+
+        decimal Rating = Gamer.Models.DataChart.SelecionaClassificacao(GameId);
     }
     <label>Nota:</label>
     @Rating
@@ -39,33 +41,37 @@
 
 
 
+    @{ if (usuario != null)
+       {
+           string UserId = HttpContext.Current.Session["ID"].ToString();
+
+                using (Html.BeginForm("Create", "Rates", new { UserId, GameId }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                            <div class="col-md-10">
 
 
-    @using (Html.BeginForm("Create", "Rates", new { UserId, GameId }, FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-group">
-            <div class="col-md-10">
-
-
-                @Html.RadioButton("Rating", "1")
-                @Html.RadioButton("Rating", "2")
-                @Html.RadioButton("Rating", "3")
-                @Html.RadioButton("Rating", "4")
-                @Html.RadioButton("Rating", "5")
+                                @Html.RadioButton("Rating", "1")
+                                @Html.RadioButton("Rating", "2")
+                                @Html.RadioButton("Rating", "3")
+                                @Html.RadioButton("Rating", "4")
+                                @Html.RadioButton("Rating", "5")
 
 
 
 
                 <input type="submit" value="Classificar" class="btn btn-primary" />
 
-            </div>
-        </div>
+                            </div>
+                    </div>
 
         <br />
 
-    }
+                }
+       }
+     }
 
 
 
