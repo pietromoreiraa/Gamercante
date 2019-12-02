@@ -42,7 +42,7 @@
                         if (usuario != null)
                         {
                             string getid = HttpContext.Current.Session["ID"].ToString();
-                            <li>@Html.ActionLink("Games", "MyGames", "Games", new { ID = getid }, htmlAttributes: null)</li>
+                            <li>@Html.ActionLink("Meus Games", "MyGames", "Games", new { ID = getid }, htmlAttributes: null)</li>
 
                             <li>@Html.ActionLink("Minhas Informações", "Details", "Usuarios", new { id = getid }, htmlAttributes: null)</li>
                             <li>@Html.ActionLink("Sair", "Logoff", "Publico")</li>
