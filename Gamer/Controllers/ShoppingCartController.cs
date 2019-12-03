@@ -217,7 +217,10 @@ namespace Gamer.Controllers
                 PaypalLogger.log("Error: " + ex.Message);
                 return View("Failure");
             }
-            return View("Success");
+
+            string TCount = "1";
+            string Tday = DateTime.Today.ToString("yyyy-MM-dd");
+            return RedirectToAction("Create", "Transacaos", new {Tday, TCount });
         }
     }
 }

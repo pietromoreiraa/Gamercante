@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Gamer.Models.Game>
+
+@{
+    ViewBag.Title = "IndexAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Jogos</h2>
+
+
+
+    
+    <style>
+        #gamelist {
+            width: 200px;
+            height: 300px;
+            
+            
+            align-content:center;
+            padding: 10px;
+                
+        }
+        #Listbody{
+            
+        }
+    </style>
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div id="gamelist">
+
+        <label>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </label>
+        <br />
+            @{
+                string img = item.Img;
+                if (img != string.Empty)
+                {
+                    if (img != null)
+                    {
+                        string file = img;
+                        string path = System.Configuration.ConfigurationManager.AppSettings["PathWeb"] + "/Files/Games/" + file;
+                        <img src='@Url.Content(path)' style="height:150px;" title="Foto" /><br />
+                        
+                    }
+                }
+            }
+        <br />
+        
+        
+        <label>
+          Plataforma:  @Html.DisplayFor(modelItem => item.Plataforma)
+        </label>
+        <br/>
+        <label>
+          Preço: R$ @Html.DisplayFor(modelItem => item.Preco)
+        </label>
+        <br/>
+
+        <label>
+          Gênero:  @Html.DisplayFor(modelItem => item.Categoria)
+        </label>
+
+        <br/>
+            @Html.ActionLink("Ver mais", "Details", new { id = item.GameID })
+
+        
+    </div>
+    }
+    </div>
+
+
+
+
+ 

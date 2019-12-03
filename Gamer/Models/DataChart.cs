@@ -30,7 +30,9 @@ namespace Gamer.Models
                                Quantidade = g.Count()
                            }).OrderBy(o => o.TransactionCode); ;
 
-           
+            var result = db.Transacoes.OrderBy(c => c.Tday).Select(gp => new {TQuantity = gp.TCount, TDia = gp.Tday });
+            
+            int Quantity = result.Sum(c => c.TQuantity);
 
             foreach (var item in result2)
             {
@@ -49,18 +51,30 @@ namespace Gamer.Models
             int gameid = Convert.ToInt32(GameId);
             var rates = db.Rates.Where(c => c.GameId == gameid).Select(gp => new { Rates = gp.Rating });
             int resultcount = rates.Count();
-            
-            
-                int resultTotal = rates.Sum(c => c.Rates);
-            
-            
-            
-               
-            
-            
-                decimal medium = Convert.ToDecimal(resultTotal) / Convert.ToDecimal(resultcount);
+            int resultif = 1;
+            try
+            {
+                var resultRates = rates.Sum(c => c.Rates);
+            }
+            catch (Exception ex)
+            {
+               resultif = 2;
+            }
+            if(resultif == 1){
 
+                int resultTotal = rates.Sum(c => c.Rates);
+
+                decimal medium = Convert.ToDecimal(resultTotal) / Convert.ToDecimal(resultcount);
                 return medium;
+            }
+            else
+            {
+                decimal medium = Convert.ToDecimal(0.00);
+                return medium;
+            }
+                
+            
+
             
         }
 

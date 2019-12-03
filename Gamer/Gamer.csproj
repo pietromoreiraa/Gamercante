@@ -235,6 +235,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\font-awesome.css" />
     <Content Include="css\magnific-popup.css" />
+    <Content Include="css\Rating.css" />
     <Content Include="css\responsive.css" />
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
@@ -406,6 +407,7 @@
     <Content Include="Views\Rates\Create.cshtml" />
     <Content Include="Views\Transacaos\Create.cshtml" />
     <Content Include="Views\Transacaos\Graficos.cshtml" />
+    <Content Include="Views\Games\IndexAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
