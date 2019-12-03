@@ -37,36 +37,20 @@
     src = "https://www.paypal.com/sdk/js?client-id=ARHhbVzNFw2GawSKU8QimH8SgkB-7qSf41rKpKZPfQadprMo_wHFcRlzkJk1wNQDLQ8d0gAh0aJMxaaM" > // Required. Replace SB_CLIENT_ID with your sandbox client ID.
 
 </script>
+<br />
+<br />
+<br />
 <h3>
     <em>Confira seu carrinho:</em>
 </h3>
 
 
-</div>
+
 
 <style>
 
     
 
-    .tdEspaco {
-       
-        
-        
-    }
-
-    .thEspaco {
-        
-       
-        
-        padding: 20px;
-    }
-
-    .thtotal {
-       
-        
-        
-        padding: 10px;
-    }
 
     table {
         border-spacing: 8px;
@@ -85,16 +69,16 @@
 
 
         <tr id="row-@item.RecordId">
-            <th class='thEspaco'>
+            <th style="white-space: pre">
               Nome do Jogo:  @Html.ActionLink(game.Nome, "Details", "Games", new { id = item.GameId }, null)
             </th>
-            <th class='thEspaco'>
+            <th style="white-space: pre">
               Preço:  R$ @game.Preco
             </th>
-            <th id="item-count-@item.RecordId" class='thEspaco'>
+            <th id="item-count-@item.RecordId" style="white-space: pre" >
               Quantidade:  @item.Count 
             </th>
-            <th class='thEspaco'>
+            <th style="white-space: pre">
                 <a href="#" class="RemoveLink"
                    data-id="@item.RecordId">
                     
@@ -103,7 +87,7 @@
         </tr>
     }
     
-    <tr class='thtotal'>
+    <tr >
         
         
         <th id="cart-total">
